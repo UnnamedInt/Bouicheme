@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://dtedqags6oa7q"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_qrqkb"]
+[ext_resource type="Texture2D" uid="uid://dwp37jpgvh3ck" path="res://Graphics.png" id="1_wy8rg"]
+[ext_resource type="AudioStream" uid="uid://cdns6vwg6ilfv" path="res://Sounds/Steps.ogg" id="3_mh7np"]
+[ext_resource type="AudioStream" uid="uid://bl6iacwe48cas" path="res://Sounds/Bell.mp3" id="4_7i2a5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj6ta"]
+atlas = ExtResource("1_wy8rg")
+region = Rect2(24, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv4bm"]
+atlas = ExtResource("1_wy8rg")
+region = Rect2(32, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqovm"]
+atlas = ExtResource("1_wy8rg")
+region = Rect2(40, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw10v"]
+atlas = ExtResource("1_wy8rg")
+region = Rect2(48, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpu7h"]
+atlas = ExtResource("1_wy8rg")
+region = Rect2(56, 16, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_blmlv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj6ta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv4bm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqovm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw10v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpu7h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8ko5"]
+size = Vector2(7, 7)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_qrqkb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_blmlv")
+frame_progress = 0.256582
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_i8ko5")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(4, 0)
+
+[node name="Steps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mh7np")
+volume_db = 2.5
+autoplay = true
+
+[node name="Key" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7i2a5")
+volume_db = 5.0
