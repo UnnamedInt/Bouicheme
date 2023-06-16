@@ -8,18 +8,10 @@ var elapsed := .0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	EBus.connect("retry", _on_shake_req)
-	EBus.connect("bomb_explosion", _on_shake_req2)
+	Shared.connect("retry", _on_shake_req)
+	Shared.connect("bomb_explosion", _on_shake_req2)
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		$AnimationPlayer.play("Fade")
-		EBus.delta_scale = 0.5
-		
-	elif Input.is_action_just_released("ui_accept"):
-		$AnimationPlayer.play_backwards("Fade")
-		EBus.delta_scale = 1.0
-	
 	if not shaking or elapsed >= duration:
 		return
 	

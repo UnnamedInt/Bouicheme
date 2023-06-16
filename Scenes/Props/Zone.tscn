@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce7stu03y78vk"]
+
+[ext_resource type="Script" path="res://Scripts/Zone.gd" id="1_bbeqg"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_powsj"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[node name="Zone" type="Node2D"]
+z_index = 2
+script = ExtResource("1_bbeqg")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_powsj")

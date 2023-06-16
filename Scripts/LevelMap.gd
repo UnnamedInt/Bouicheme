@@ -14,7 +14,7 @@ const OFFSETS = [
 ]
 
 func _ready():
-	EBus.connect("bomb_explosion", _bomb_explosion)
+	Shared.connect("bomb_explosion", _bomb_explosion)
 
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed():
@@ -30,7 +30,7 @@ func destroy_cell(mouse_pos: Vector2, override = false):
 	if value & 1 == 0 and not override:
 		return
 	
-	EBus.emit_signal("bloc_breakage")
+	Shared.emit_signal("bloc_breakage")
 	
 	erase_cell(0, local_pos)
 	
@@ -44,7 +44,7 @@ func add_cell(mouse_pos: Vector2):
 	if value & 2 == 0:
 		return
 		
-	EBus.emit_signal("bloc_placement")
+	Shared.emit_signal("bloc_placement")
 	
 	set_cell(0, local_to_map(mouse_pos), 0, Vector2i(7, 5))
 

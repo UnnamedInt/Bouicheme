@@ -1,8 +1,8 @@
 extends AudioStreamPlayer
 
 func _ready():
-	EBus.connect("bloc_placement", _on_bloc_placement)
-	EBus.connect("bloc_breakage", _on_bloc_breakage)
+	Shared.connect("bloc_placement", _on_bloc_placement)
+	Shared.connect("bloc_breakage", _on_bloc_breakage)
 
 func _on_bloc_placement():
 	pitch_scale = .75

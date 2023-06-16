@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxo6ggmmdvftj"]
+
+[ext_resource type="Script" path="res://Scripts/Bomb.gd" id="1_jg1y4"]
+[ext_resource type="Texture2D" uid="uid://dwp37jpgvh3ck" path="res://Graphics/Graphics.png" id="2_quh5q"]
+[ext_resource type="AudioStream" uid="uid://cn20qfky55r7t" path="res://Sounds/Pop.wav" id="3_61ypa"]
+[ext_resource type="AudioStream" uid="uid://cnc5ndic4v3by" path="res://Sounds/Ignition.ogg" id="4_hpnjd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ieg2e"]
+size = Vector2(6, 8)
+
+[node name="Bomb" type="CharacterBody2D"]
+position = Vector2(4, 4)
+collision_layer = 2
+platform_wall_layers = 3
+script = ExtResource("1_jg1y4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_quh5q")
+region_enabled = true
+region_rect = Rect2(72, 8, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ieg2e")
+
+[node name="Ignited" type="CPUParticles2D" parent="."]
+position = Vector2(0, -3)
+emitting = false
+lifetime = 0.4
+direction = Vector2(0, -1)
+spread = 84.06
+gravity = Vector2(0, 100)
+initial_velocity_min = 16.0
+initial_velocity_max = 32.0
+angular_velocity_min = -95.09
+angular_velocity_max = 163.02
+scale_amount_min = 0.5
+color = Color(1, 0.545098, 0.403922, 1)
+
+[node name="Pop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_61ypa")
+
+[node name="Ignition" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hpnjd")
+
+[connection signal="finished" from="Pop" to="." method="_on_audio_stream_player_finished"]

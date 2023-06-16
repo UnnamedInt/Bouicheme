@@ -1,28 +1,29 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtedqags6oa7q"]
+[gd_scene load_steps=14 format=3 uid="uid://dv3p5t87u0exk"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_qrqkb"]
-[ext_resource type="Texture2D" uid="uid://dwp37jpgvh3ck" path="res://Graphics.png" id="1_wy8rg"]
+[ext_resource type="Texture2D" uid="uid://dwp37jpgvh3ck" path="res://Graphics/Graphics.png" id="2_ifvfk"]
 [ext_resource type="AudioStream" uid="uid://cdns6vwg6ilfv" path="res://Sounds/Steps.ogg" id="3_mh7np"]
 [ext_resource type="AudioStream" uid="uid://bl6iacwe48cas" path="res://Sounds/Bell.mp3" id="4_7i2a5"]
+[ext_resource type="Script" path="res://addons/trail_2d/trail_2d.gd" id="5_a84pi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xj6ta"]
-atlas = ExtResource("1_wy8rg")
+atlas = ExtResource("2_ifvfk")
 region = Rect2(24, 16, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lv4bm"]
-atlas = ExtResource("1_wy8rg")
+atlas = ExtResource("2_ifvfk")
 region = Rect2(32, 16, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqovm"]
-atlas = ExtResource("1_wy8rg")
+atlas = ExtResource("2_ifvfk")
 region = Rect2(40, 16, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lw10v"]
-atlas = ExtResource("1_wy8rg")
+atlas = ExtResource("2_ifvfk")
 region = Rect2(48, 16, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpu7h"]
-atlas = ExtResource("1_wy8rg")
+atlas = ExtResource("2_ifvfk")
 region = Rect2(56, 16, 8, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_blmlv"]
@@ -48,15 +49,31 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Curve" id="Curve_v8yrf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.190909), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8ko5"]
 size = Vector2(7, 7)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 3
 script = ExtResource("1_qrqkb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_blmlv")
 frame_progress = 0.256582
+
+[node name="Trail2D" type="Line2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+z_index = -4096
+points = PackedVector2Array(-2, -4)
+width = 5.0
+width_curve = SubResource("Curve_v8yrf")
+script = ExtResource("5_a84pi")
+length = 50
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)
