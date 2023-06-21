@@ -24,6 +24,7 @@ func _physics_process(delta):
 			
 		if col.get_collider() is Player:
 			Shared.emit_signal("retry")
+			Shared.deathcount += 1
 		
 		if col.get_normal().abs() == dir.abs():
 			queue_free()

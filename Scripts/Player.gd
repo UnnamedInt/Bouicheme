@@ -12,6 +12,7 @@ func _when_collides(can_hop = true):
 			_when_collides(false)
 		else:
 			Shared.emit_signal("retry")
+			Shared.deathcount += 1
 		
 	if not $RayCast2D.get_collider() is LevelMap:
 		return
@@ -31,11 +32,15 @@ func _when_collides(can_hop = true):
 				_when_collides(false)
 			else:
 				Shared.emit_signal("retry")
-		32:
-			$Key.play()
-			Shared.emit_signal("goto_next")
-		
+				Shared.deathcount += 1
+
 func _physics_process(delta):
+	if Input.is_action_just_pressed("retry"):
+		Shared.emit_signal("retry")
+		Shared.deathcount += 1
+	
+	Shared.player_pos = position
+	
 	var _delta = delta * Shared.delta_scale
 	$AnimatedSprite2D.speed_scale = Shared.delta_scale
 	
@@ -55,6 +60,7 @@ func _physics_process(delta):
 		
 		if position.y > 128:
 			Shared.emit_signal("retry")
+			Shared.deathcount += 1
 		
 		move_and_slide()
 		return
@@ -69,6 +75,3 @@ func _physics_process(delta):
 		_when_collides()
 	
 	move_and_slide()
-
-func _on_bomb_explosion():
-	Shared.emit_signal("retry")

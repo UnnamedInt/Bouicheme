@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dv3p5t87u0exk"]
+[gd_scene load_steps=13 format=3 uid="uid://dv3p5t87u0exk"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_qrqkb"]
 [ext_resource type="Texture2D" uid="uid://dwp37jpgvh3ck" path="res://Graphics/Graphics.png" id="2_ifvfk"]
 [ext_resource type="AudioStream" uid="uid://cdns6vwg6ilfv" path="res://Sounds/Steps.ogg" id="3_mh7np"]
-[ext_resource type="AudioStream" uid="uid://bl6iacwe48cas" path="res://Sounds/Bell.mp3" id="4_7i2a5"]
 [ext_resource type="Script" path="res://addons/trail_2d/trail_2d.gd" id="5_a84pi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xj6ta"]
@@ -86,7 +85,3 @@ target_position = Vector2(4, 0)
 stream = ExtResource("3_mh7np")
 volume_db = 2.5
 autoplay = true
-
-[node name="Key" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_7i2a5")
-volume_db = 5.0

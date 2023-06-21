@@ -16,6 +16,13 @@ const OFFSETS = [
 func _ready():
 	Shared.connect("bomb_explosion", _bomb_explosion)
 
+func _process(_delta):
+	var p := Shared.player_pos
+	var cell := get_cell_at(p)
+	
+	if cell == 32:
+		Shared.emit_signal("goto_next")
+
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == MOUSE_BUTTON_LEFT:

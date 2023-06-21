@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv46k2jtwyb7q"]
+
+[ext_resource type="Theme" uid="uid://d0s0p5is4a848" path="res://addons/FlatUI/kenneyUI.tres" id="1_ixw5u"]
+[ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="2_6xcpq"]
+[ext_resource type="Texture2D" uid="uid://ddi1l7iruquxa" path="res://Graphics/logo.png" id="2_phm41"]
+[ext_resource type="Texture2D" uid="uid://6563a65qtsdk" path="res://Graphics/thumb.png" id="3_pfwi6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ndvy"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ixw5u")
+script = ExtResource("2_6xcpq")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.301961, 0.301961, 0.301961, 1)
+material = SubResource("ShaderMaterial_1ndvy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pfwi6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 37.0
+grow_horizontal = 2
+text = "Bouichême"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+modulate = Color(0.411765, 0.411765, 0.411765, 1)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Thanks For Playing!
+Deathless mode now:"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 94.0
+offset_right = 244.0
+offset_bottom = 118.0
+texture = ExtResource("2_phm41")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 91.0
+offset_right = 187.0
+offset_bottom = 121.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
